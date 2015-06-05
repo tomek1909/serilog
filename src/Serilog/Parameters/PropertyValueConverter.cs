@@ -192,6 +192,11 @@ namespace Serilog.Parameters
                     SelfLog.WriteLine("The property accessor {0} threw exception {1}", prop, ex);
                     propValue = "The property accessor threw an exception: " + ex.InnerException.GetType().Name;
                 }
+                catch (Exception ex)
+                {
+                    SelfLog.WriteLine("The property accessor {0} threw exception {1}", prop, ex);
+                    propValue = "The property accessor threw an exception: " + ex.GetType().Name;
+                }
                 yield return new LogEventProperty(prop.Name, recursive.CreatePropertyValue(propValue, true));
             }
         }
